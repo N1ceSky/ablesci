@@ -58,17 +58,26 @@ class Ablesci:
         """从文件加载cookies"""
         try:
             with open("cookies.json", "r") as f:
-                cookies_dict = json.load(f)
-                self.session.cookies.update(cookies_dict)
-            return True
+                all_cookies = json.load(f)
+                if self.email in all_cookies:
+                    self.session.cookies.update(all_cookies[self.email])
+                    return True
+                return False
         except FileNotFoundError:
             return False
 
     def saveCookies(self):
         """将cookies保存到文件"""
-        cookies_dict = dict(self.session.cookies)
+        try:
+            with open("cookies.json", "r") as f:
+                all_cookies = json.load(f)
+        except FileNotFoundError:
+            all_cookies = {}
+
+        all_cookies[self.email] = dict(self.session.cookies)
+
         with open("cookies.json", "w") as f:
-            json.dump(cookies_dict, f)
+            json.dump(all_cookies, f)
 
     def getCsrfToken(self):
         """获取login页面html中的csrf"""
