@@ -17,7 +17,7 @@
   "your email 2": "password"
  }
 ```
-### 运行main.py
+### 2. 运行main.py
 本地运行
 ```
 python main.py
