@@ -118,4 +118,3 @@ class Ablesci:
         self.checkLogin()
         data = [["当前积分", self.pointNow], ["连续签到", f"{self.signCount}天"]]
         print(tabulate(data, tablefmt="simple_outline", colalign=("center", "center")))
-        print(tabulate(data, tablefmt="simple_outline", colalign=("center", "center")))
