@@ -3,6 +3,7 @@ import re
 
 import requests
 from bs4 import BeautifulSoup
+from tabulate import tabulate
 
 
 class Ablesci:
@@ -115,5 +116,6 @@ class Ablesci:
 
     def printUserSingInfo(self):
         self.checkLogin()
-        print("当前积分:", self.pointNow)
-        print("连续签到:", self.signCount + "天")
+        data = [["当前积分", self.pointNow], ["连续签到", f"{self.signCount}天"]]
+        print(tabulate(data, tablefmt="simple_outline", colalign=("center", "center")))
+        print(tabulate(data, tablefmt="simple_outline", colalign=("center", "center")))
